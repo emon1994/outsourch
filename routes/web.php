@@ -24,10 +24,11 @@ Route::get('/', function () {
 });
 
 
+
 Route::group(['middleware' => ['guest']], function () {
     // Customer Auth Routes
     Route::get('customer/register', [CustomerAuthController::class, 'showRegistrationForm'])->name('customer.register');
-    Route::post('customer/register', [CustomerAuthController::class, 'register'])->name('registration');
+    Route::post('customer/register', [CustomerAuthController::class, 'register'])->name('customer-registration');
     Route::get('customer/login', [CustomerAuthController::class, 'showLoginForm'])->name('customer.login');
     Route::post('customer/login', [CustomerAuthController::class, 'login']);
 
@@ -36,7 +37,16 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('admin/login', [AuthenticatedSessionController::class, 'store']);
 });
 
+
+// Route::post('customer/logout', [CustomerAuthController::class, 'logout'])->name('customer.logout')->middleware('auth:customer');
+
+// Route::middleware('auth:customer')->group(function () {
+//     Route::get('customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
+// });
+
+
 Route::middleware('auth:customer')->group(function () {
+    Route::post('customer/logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');
     Route::get('customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
 });
 
@@ -76,4 +86,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -15,3 +15,8 @@
 
     <button type="submit">Login</button>
 </form>
+@if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+@endif

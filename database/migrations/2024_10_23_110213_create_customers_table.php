@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('mobile');
             $table->string('password');
             $table->string('fb_id_link')->nullable();
-            $table->date('country')->nullable();
-            $table->date('dob')->nullable();
+            $table->string('country')->nullable(); 
             $table->text('address')->nullable();
             $table->string('dress_size')->nullable();
             $table->string('shoe_size')->nullable();
