@@ -31,4 +31,6 @@
 	<!-- responsive -->
 	<link rel="stylesheet" href="frontend/assets/css/responsive.css">
 
+	@vite('resources/css/app.css')
+
 </head>

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerAuthController;
-
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +48,15 @@ Route::group(['middleware' => ['guest']], function () {
 Route::middleware('auth:customer')->group(function () {
     Route::post('customer/logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');
     Route::get('customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
+    Route::get('customer/profile', [CustomerController::class, 'completeProfile'])->name('complete.profile');
+    Route::post('customer/additional/{customer_id}', [CustomerController::class, 'additionalProfile'])->name('profile.additional');
+    // Route::get('customer/order', [OrderController::class, 'OrderForm'])->name('order.form');
+    // Route::post('order/submit/{customer_id}', [OrderController::class, 'storeOrder'])->name('order.store');
+
+
+    //
+    Route::get('/orders/create', [OrderController::class, 'create'])->name('order.create');
+    Route::post('/orders', [OrderController::class, 'store'])->name('order.store');
 });
 
 Route::middleware('auth')->group(function () {

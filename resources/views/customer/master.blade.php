@@ -10,7 +10,7 @@
 
 </div>
 
-@include('customer.components.footer-control-sidebar')
+{{-- @include('customer.components.footer-control-sidebar') --}}
 
 
 @include('customer.components.js')

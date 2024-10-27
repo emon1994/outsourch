@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('mobile');
             $table->string('password');
+            $table->date('dob')->nullable();
             $table->string('fb_id_link')->nullable();
             $table->string('country')->nullable(); 
             $table->text('address')->nullable();
